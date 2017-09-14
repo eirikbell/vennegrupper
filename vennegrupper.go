@@ -9,25 +9,13 @@ import(
 
 func main() {
 
-	var aj *stack.Stack = stack.New()
-	for _, value := range Shuffle([]string{"Henriette", "Alexandra", "Nikoline", "Gabriela"}) {
-		aj.Push(value)
-	}
+	aj := randomStack([]string{"Henriette", "Alexandra", "Nikoline", "Gabriela"})
 
-	var ag *stack.Stack = stack.New()
-	for _, value := range Shuffle([]string{"Nathaniel", "Sebastian", "William", "Noah", "Casper", "Joakim", "Vebjørn"}) {
-		ag.Push(value)
-	}
+	ag := randomStack([]string{"Nathaniel", "Sebastian", "William", "Noah", "Casper", "Joakim", "Vebjørn"})
 
-	var bj *stack.Stack = stack.New()
-	for _, value := range Shuffle([]string{"Sekina", "Emma", "Natalie", "Katarina", "Thea", "Malene", "Vanessa", "Christina"}) {
-		bj.Push(value)
-	}
+	bj := randomStack([]string{"Sekina", "Emma", "Natalie", "Katarina", "Thea", "Malene", "Vanessa", "Christina"})
 
-	var bg *stack.Stack = stack.New()
-	for _, value := range Shuffle([]string{"Ariander", "Chrisander"}) {
-		bg.Push(value)
-	}
+	bg := randomStack([]string{"Ariander", "Chrisander"})
 
 	// 12 jenter, 9 gutter, 11 a, 10 bg
 	// 1aj, 1ag, 1bj, 1bg
@@ -84,6 +72,14 @@ func main() {
 			fmt.Println("\t", medlem)
 		}
 	}
+}
+
+func randomStack(items []string) *stack.Stack {
+	var result *stack.Stack = stack.New()
+	for _, value := range Shuffle(items) {
+		result.Push(value)
+	}
+	return result
 }
 
 func allPresent(s ...*stack.Stack) bool {
