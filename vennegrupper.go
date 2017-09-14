@@ -24,7 +24,7 @@ func main() {
 	// 4ag, 5ag, 5bj, 6bj
 	// 4aj, 6ag, 7ag, 7bj, 8bj
 	
-	total := int(aj.GetDepth() + ag.GetDepth() + bj.GetDepth() + bg.GetDepth())
+	total := totalDepth(aj, ag, bj, bg)
 	additional := total % 4
 	groupCount := (total - additional) / 4
 
@@ -92,24 +92,14 @@ func allPresent(s ...*stack.Stack) bool {
 	return true
 }
 
-func nextGroup(aj, ag, bj, bg, medlemmer []string) ([]string, []string, []string, []string, []string) {
-	medlem, ajPop := aj[0], aj[1:]
-	medlemmerAppend := append(medlemmer, medlem)
+func totalDepth(s ...*stack.Stack) int {
+	totalDepth := 0
 
-	medlem, agPop := ag[0], ag[1:]
-	medlemmerAppend = append(medlemmerAppend, medlem)
+	for _, stack := range s {
+		totalDepth += int(stack.GetDepth())
+	}
 
-	medlem, bjPop := bj[0], bj[1:]
-	medlemmerAppend = append(medlemmerAppend, medlem)
-
-	medlem, bgPop := bg[0], bg[1:]
-	medlemmerAppend = append(medlemmerAppend, medlem)
-
-	return ajPop, agPop, bjPop, bgPop, medlemmerAppend
-}
-
-func compare(x, y []string) int {
-	return len(x) - len(y)
+	return totalDepth
 }
 
 func Shuffle(array []string) []string {
